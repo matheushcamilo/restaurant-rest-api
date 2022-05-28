@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/entregas")
@@ -18,12 +19,22 @@ public class EntregaController {
     }
 
     @GetMapping
-    public List<Entrega> getAllEntregas(){
-        return entregaService.getAllEntregas();
+    public List<Entrega> listarEntregas(){
+        return entregaService.listarEntregas();
+    }
+
+    @GetMapping("buscar/{id}")
+    public Optional<Entrega> buscarEntrega(@PathVariable Long id){
+        return entregaService.buscarEntrega(id);
     }
 
     @PostMapping
-    public String createEntregas(@RequestBody Entrega entrega){
-        return entregaService.createEntrega(entrega);
+    public String criarEntrega(@RequestBody Entrega entrega){
+        return entregaService.criarEntrega(entrega);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public String deletarEntrega(@PathVariable Long id){
+        return entregaService.deletarEntrega(id);
     }
 }
