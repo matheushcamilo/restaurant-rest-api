@@ -3,6 +3,7 @@ package com.grupoacert.restaurantapi.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,9 +16,15 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clienteId;
 
-    private String nomeDoCliente;
+    @Column(nullable = false, unique = true)
+    private String nome;
 
+    @Column(name = "CPF", nullable = false, unique = true)
     private String cpfDoCliente;
 
+    @Column
     private String cepDoCliente;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Pedido> pedidos;
 }

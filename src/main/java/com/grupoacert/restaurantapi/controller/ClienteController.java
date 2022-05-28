@@ -3,7 +3,6 @@ package com.grupoacert.restaurantapi.controller;
 import com.grupoacert.restaurantapi.entities.Cliente;
 import com.grupoacert.restaurantapi.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,16 +11,30 @@ import java.util.List;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-    @Autowired
     ClienteService clienteService;
 
+    @Autowired
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
+
     @GetMapping
-    public List<Cliente> getAllClientes(){
-        return clienteService.getAllClientes();
+    public List<Cliente> listarClientes(){
+        return clienteService.listarClientes();
+    }
+
+    @GetMapping("buscar/{nome}")
+    public Cliente buscarPorNome(@PathVariable String nome){
+        return clienteService.buscarPorNome(nome);
     }
 
     @PostMapping
-    public String createCliente(@RequestBody Cliente cliente){
-        return clienteService.createCliente(cliente);
+    public String criarCliente(@RequestBody Cliente cliente){
+        return clienteService.criarCliente(cliente);
+    }
+
+    @DeleteMapping("deletar/{nome}")
+    public String deletarCliente(@PathVariable String nome){
+        return clienteService.deletarCliente(nome);
     }
 }
