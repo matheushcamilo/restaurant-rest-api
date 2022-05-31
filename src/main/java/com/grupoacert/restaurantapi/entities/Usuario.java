@@ -7,19 +7,23 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pedido {
+@Entity
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pedidoId;
+    private Long id;
 
-    private String descricaoDoPedido;
+    @Column(nullable = false, unique = true)
+    private String username;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Entrega entrega;
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true)
+    private String email;
 }

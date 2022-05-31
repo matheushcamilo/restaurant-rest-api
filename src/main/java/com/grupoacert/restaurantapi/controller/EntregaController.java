@@ -33,7 +33,7 @@ public class EntregaController {
         return entregaService.criarEntrega(entrega);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("deletar/{id}")
     public String deletarEntrega(@PathVariable Long id){
         return entregaService.deletarEntrega(id);
     }
