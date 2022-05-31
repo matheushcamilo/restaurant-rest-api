@@ -25,7 +25,7 @@ public class UsuarioService {
         try{
             usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
             Usuario usuarioSalvo = usuarioRepository.save(usuario);
-            return "O token gerado para este usuário é: ";
+            return "Novo usuário salvo. Para pegar o Token, informe login e senha em /api/services/controller/user/login";
         }catch (Exception e){
             return "Error: " + e.getMessage();
         }

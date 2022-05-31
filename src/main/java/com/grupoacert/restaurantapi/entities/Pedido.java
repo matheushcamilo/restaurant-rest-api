@@ -17,6 +17,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pedidoId;
+
     private String descricaoDoPedido;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

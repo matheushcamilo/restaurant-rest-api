@@ -36,7 +36,6 @@ public class PedidoController {
         return pedidoService.criarPedido(pedido);
     }
 
-    @Transactional
     @DeleteMapping("deletar/{id}")
     public String deletarPedido(@PathVariable Long id){
         return pedidoService.deletarPedido(id);
